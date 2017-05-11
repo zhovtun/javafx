@@ -4,25 +4,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.*;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.*;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
-import java.awt.*;
-import java.awt.Label;
+
 
 public class Controller extends Canvas {
 
+    @FXML
+    public Slider slider;
 
-    @FXML private javafx.scene.control.Label lable1;
-    @FXML private javafx.scene.control.Label lable2;
+
     @FXML public javafx.scene.canvas.Canvas canvas;
     GraphicsContext graphicsContext;
 
     int x = 50;
     int y = 50;
-    int step = 2;
+    double step = 1;
+
+
 
 
 
@@ -48,6 +48,7 @@ public class Controller extends Canvas {
 
 
     public void move (GraphicsContext gc, String str) {
+        step = slider.getValue();
         if (str.equals("UP")) {y -= step;}
         if (str.equals("DOWN")) {y += step;}
         if (str.equals("RIGHT")) {x += step;}
@@ -57,5 +58,12 @@ public class Controller extends Canvas {
         gc.setStroke(Color.BLACK);
         gc.strokeOval (x, y, 20, 30);
     }
+
+    public void create(ActionEvent actionEvent) {
+    }
+
+    public void select(ActionEvent actionEvent) {
+    }
+
 
 }

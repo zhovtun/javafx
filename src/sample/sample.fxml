@@ -25,10 +25,22 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: silver;">
          <children>
-            <Button layoutX="273.0" layoutY="14.0" mnemonicParsing="false" onAction="#up" text="Button" />
-            <Button layoutX="273.0" layoutY="70.0" mnemonicParsing="false" onAction="#down" text="Button" />
-            <Button layoutX="213.0" layoutY="42.0" mnemonicParsing="false" onAction="#left" text="Button" />
-            <Button layoutX="339.0" layoutY="42.0" mnemonicParsing="false" onAction="#right" text="Button" />
+            <Button layoutX="422.0" layoutY="14.0" mnemonicParsing="false" onAction="#up" prefHeight="25.0" prefWidth="60.0" text="Вверх" />
+            <Button layoutX="424.0" layoutY="67.0" mnemonicParsing="false" onAction="#down" prefHeight="25.0" prefWidth="57.0" text="Вниз" />
+            <Button layoutX="364.0" layoutY="42.0" mnemonicParsing="false" onAction="#left" prefHeight="25.0" prefWidth="60.0" text="Влево" />
+            <Button layoutX="482.0" layoutY="42.0" mnemonicParsing="false" onAction="#right" prefHeight="25.0" prefWidth="67.0" text="Вправо" />
+            <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#create" prefHeight="59.0" prefWidth="67.0" text="Создать" />
+            <Slider fx:id="slider" blockIncrement="1.0" layoutX="112.0" layoutY="85.0" max="20.0" min="1.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" value="1.0" />
+            <Label layoutX="211.0" layoutY="66.0" text="Скорость" />
+            <RadioButton fx:id="ring" layoutX="112.0" layoutY="9.0" mnemonicParsing="false" onAction="#select" selected="true" text="Круг">
+               <toggleGroup>
+                  <ToggleGroup fx:id="shape" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="Oval" layoutX="112.0" layoutY="28.0" mnemonicParsing="false" onAction="#select" text="Овал" toggleGroup="$shape" />
+            <RadioButton fx:id="rectangle" layoutX="112.0" layoutY="46.0" mnemonicParsing="false" onAction="#select" text="Прямоугольник" toggleGroup="$shape" />
+            <RadioButton fx:id="triangle" layoutX="220.0" layoutY="9.0" mnemonicParsing="false" onAction="#select" text="Треугольник" toggleGroup="$shape" />
+            <RadioButton fx:id="point" layoutX="220.0" layoutY="28.0" mnemonicParsing="false" onAction="#select" text="Точка" toggleGroup="$shape" />
          </children></AnchorPane>
   </items>
 </SplitPane>
