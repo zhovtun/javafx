@@ -7,9 +7,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
+import java.util.HashMap;
 import java.util.Random;
 
 
@@ -22,16 +24,20 @@ public class Controller extends Canvas {
     tEllipse[] ellipse;
     tTriangle[] triangle;
 
-    int size = 30;
-    int x = 50;
-    int y = 50;
+    int size;
+    boolean state = false;
     double step = 1;
     String type = "circle";
 
     public ToggleGroup toggleGroup;
 
+    private HashMap<KeyCode, Boolean> keys = new HashMap<>();
+
     @FXML
     public Slider slider;
+
+    @FXML
+    public Slider quantity;
 
     @FXML
     public RadioButton ringR;
@@ -86,18 +92,6 @@ public class Controller extends Canvas {
     }
 
 
-    public void move (GraphicsContext gc, String str) {
-        step = slider.getValue();
-        if (str.equals("UP")) {y -= step;}
-        if (str.equals("DOWN")) {y += step;}
-        if (str.equals("RIGHT")) {x += step;}
-        if (str.equals("LEFT")) {x -= step;}
-        gc.clearRect(0, 0, 600, 300);
-        // gc.setFill(Color.BLUEVIOLET);
-        gc.setStroke(Color.BLACK);
-        gc.strokeOval (x, y, 20, 30);
-    }
-
     public void create(ActionEvent actionEvent) {
         buildArray();
         drawArray();
@@ -115,6 +109,7 @@ public class Controller extends Canvas {
 
     public void buildArray () {
         int i=0;
+        size = (int) quantity.getValue();
         Random random = new Random();
         point = new tPoint[size];
         circle = new tCircle[size];
@@ -145,7 +140,7 @@ public class Controller extends Canvas {
     public void drawArray () {
         int i = 0;
         graphicsContext = canvas.getGraphicsContext2D();
-            graphicsContext.clearRect(0, 0, 600, 300);
+            graphicsContext.clearRect(0, 0, 600, 360);
             while (i < size) {
                 point[i].draw(graphicsContext);
                 circle[i].draw(graphicsContext);
@@ -159,6 +154,7 @@ public class Controller extends Canvas {
 
     public void moveArray (String type, String direction, int step) {
         int i=0;
+        state = false;
 
         while (i<size) {
             if (type.equals("point")) {
@@ -219,6 +215,15 @@ public class Controller extends Canvas {
         }
     }
 
+    public void randMove(ActionEvent actionEvent) {
+        state = true;
+        String[] d = {"UP", "DOWN", "LEFT", "RIGHT"};
+        Random rnd = new Random();
+        for (int i = 0; i<100; i++) {
+            step = slider.getValue();
+            moveArray(type, d[rnd.nextInt(d.length)], (int)step);
+            drawArray();
+        }
 
-
+    }
 }
