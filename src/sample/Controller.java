@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class Controller extends Canvas {
+public class Controller {
 
     tPoint[] point;
     tCircle[] circle;
@@ -84,13 +84,6 @@ public class Controller extends Canvas {
         moveArray(type, "UP", (int)step);
         drawArray();
     }
-
-    @FXML public void kup(KeyEvent keyEvent) {
-        step = slider.getValue();
-        moveArray(type, "UP", (int)step);
-        drawArray();
-    }
-
 
     public void create(ActionEvent actionEvent) {
         buildArray();
