@@ -1,9 +1,10 @@
 package sample;
 
 
-import javafx.scene.Group;
+
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
+
 
 public class tTriangle extends tPoint {
     private double vertex1x;
@@ -12,7 +13,6 @@ public class tTriangle extends tPoint {
     private double vertex2y;
     private double vertex3x;
     private double vertex3y;
-    private Polygon shape;
 
     public tTriangle(double vertex1x, double vertex1y, double vertex2x, double vertex2y, double vertex3x, double vertex3y,
                      int posX, int posY, double colorR, double colorG, double colorB) {
@@ -23,6 +23,7 @@ public class tTriangle extends tPoint {
         this.vertex2y = vertex2y;
         this.vertex3x = vertex3x;
         this.vertex3y = vertex3y;
+
     }
 
     public void setVertex1x (int v1x) {vertex1x = v1x;}
@@ -40,12 +41,40 @@ public class tTriangle extends tPoint {
     public double getVertex3y () {return vertex3y;}
 
     @Override
-    public void create(Group rt) {
-        shape = new Polygon(vertex1x, vertex1y, vertex2x, vertex2y, vertex3x, vertex3y);
-        //shape.setTranslateX(posX);
-        //shape.setTranslateY(posY);
-        shape.setFill(Color.TRANSPARENT);
-        shape.setStroke(Color.color(colorR, colorG, colorB));
-        rt.getChildren().add(shape);
+    public void moveUp (int step) {
+        vertex1y -= step;
+        vertex2y -= step;
+        vertex3y -= step;
+    }
+
+    @Override
+    public void moveDown (int step) {
+        vertex1y += step;
+        vertex2y += step;
+        vertex3y += step;
+    }
+
+    @Override
+    public void moveLeft (int step) {
+        vertex1x -= step;
+        vertex2x -= step;
+        vertex3x -= step;
+    }
+
+    @Override
+    public void moveRight (int step) {
+        vertex1x += step;
+        vertex2x += step;
+        vertex3x += step;
+    }
+
+
+
+    @Override
+    public void draw (GraphicsContext gc) {
+        double[] xPoints = {vertex1x, vertex2x, vertex3x};
+        double[] yPoints = {vertex1y, vertex2y, vertex3y};
+        gc.setStroke(Color.color(colorR, colorG, colorB));
+        gc.strokePolygon(xPoints, yPoints, 3);
     }
 }

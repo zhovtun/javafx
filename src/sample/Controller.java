@@ -16,16 +16,17 @@ import java.util.Random;
 public class Controller extends Canvas {
 
     tPoint[] point;
-    /*tCircle[] circle;
+    tCircle[] circle;
     tRectangle[] rectangle;
     tSegment[] segment;
     tEllipse[] ellipse;
-    tTriangle[] triangle;*/
+    tTriangle[] triangle;
+
     int size = 30;
     int x = 50;
     int y = 50;
     double step = 1;
-    String type;
+    String type = "circle";
 
     public ToggleGroup toggleGroup;
 
@@ -47,37 +48,40 @@ public class Controller extends Canvas {
     @FXML
     public RadioButton pointR;
 
+    @FXML
+    public RadioButton segmentR;
+
     @FXML public javafx.scene.canvas.Canvas canvas;
     GraphicsContext graphicsContext;
 
 
     @FXML public void down(ActionEvent actionEvent) {
         step = slider.getValue();
-        moveArray("point", "DOWN", (int)step);
+        moveArray(type, "DOWN", (int)step);
         drawArray();
     }
 
     @FXML public void left(ActionEvent actionEvent) {
         step = slider.getValue();
-        moveArray("point", "LEFT", (int)step);
+        moveArray(type, "LEFT", (int)step);
         drawArray();
     }
 
     @FXML public void right(ActionEvent actionEvent) {
         step = slider.getValue();
-        moveArray("point", "RIGHT", (int)step);
+        moveArray(type, "RIGHT", (int)step);
         drawArray();
     }
 
     @FXML public void up(ActionEvent actionEvent) {
         step = slider.getValue();
-        moveArray("point", "UP", (int)step);
+        moveArray(type, "UP", (int)step);
         drawArray();
     }
 
     @FXML public void kup(KeyEvent keyEvent) {
         step = slider.getValue();
-        moveArray("point", "UP", (int)step);
+        moveArray(type, "UP", (int)step);
         drawArray();
     }
 
@@ -100,12 +104,12 @@ public class Controller extends Canvas {
     }
 
     public void select(ActionEvent actionEvent) {
-        ringR.setToggleGroup(toggleGroup);
-        ovalR.setToggleGroup(toggleGroup);
-        rectangleR.setToggleGroup(toggleGroup);
-        triangleR.setToggleGroup(toggleGroup);
-        pointR.setToggleGroup(toggleGroup);
-        toggleGroup. //TODO Допилить выбор радиокнопки по ссылке http://www.java2s.com/Tutorials/Java/JavaFX/0420__JavaFX_RadioButton.htm
+        if (ringR.isSelected()) {type = "circle";}
+        if (pointR.isSelected()) {type = "point";}
+        if (rectangleR.isSelected()) {type = "rectangle";}
+        if (ovalR.isSelected()) {type = "ellipse";}
+        if (triangleR.isSelected()) {type = "triangle";}
+        if (segmentR.isSelected()) {type = "segment";}
 
     }
 
@@ -113,26 +117,26 @@ public class Controller extends Canvas {
         int i=0;
         Random random = new Random();
         point = new tPoint[size];
-        /*circle = new tCircle[size];
+        circle = new tCircle[size];
         rectangle = new tRectangle[size];
         segment = new tSegment[size];
         ellipse = new tEllipse[size];
-        triangle = new tTriangle[size];*/
+        triangle = new tTriangle[size];
 
         while (i<size) {
-            point[i] = new tPoint(random.nextInt(600), random.nextInt(600),
+            point[i] = new tPoint(random.nextInt(600), random.nextInt(300),
                     random.nextDouble(), random.nextDouble(), random.nextDouble());
-            /*circle[i] = new tCircle(random.nextInt(600), random.nextInt(600), random.nextInt(80),
+            circle[i] = new tCircle(random.nextInt(600), random.nextInt(300), random.nextInt(30),
                     random.nextDouble(), random.nextDouble(), random.nextDouble());
-            rectangle[i] = new tRectangle(random.nextInt(600), random.nextInt(600), random.nextInt(80),
+            rectangle[i] = new tRectangle(random.nextInt(600), random.nextInt(300), random.nextInt(30),
                     random.nextInt(80), random.nextDouble(), random.nextDouble(), random.nextDouble());
-            segment[i] = new tSegment(random.nextInt(600), random.nextInt(600), random.nextInt(100),
+            segment[i] = new tSegment(random.nextInt(600), random.nextInt(300), random.nextInt(50),
                     random.nextDouble(), random.nextDouble(), random.nextDouble());
-            ellipse[i] = new tEllipse(random.nextInt(600), random.nextInt(600), random.nextInt(80),
-                    random.nextInt(80), random.nextDouble(), random.nextDouble(), random.nextDouble());
-            triangle[i] = new tTriangle(random.nextInt(600), random.nextInt(600), random.nextInt(600), random.nextInt(600),
-                    random.nextInt(600), random.nextInt(600), random.nextInt(600), random.nextInt(600),
-                    random.nextDouble(), random.nextDouble(), random.nextDouble());*/
+            ellipse[i] = new tEllipse(random.nextInt(600), random.nextInt(300), random.nextInt(30),
+                    random.nextInt(60), random.nextDouble(), random.nextDouble(), random.nextDouble());
+            triangle[i] = new tTriangle(random.nextInt(600), random.nextInt(300), random.nextInt(600), random.nextInt(300),
+                    random.nextInt(600), random.nextInt(300), random.nextInt(600), random.nextInt(300),
+                    random.nextDouble(), random.nextDouble(), random.nextDouble());
 
             i++;
         }
@@ -144,11 +148,11 @@ public class Controller extends Canvas {
             graphicsContext.clearRect(0, 0, 600, 300);
             while (i < size) {
                 point[i].draw(graphicsContext);
-            /*circle[i].create(root);
-            rectangle[i].create(root);
-            segment[i].create(root);
-            ellipse[i].create(root);
-            triangle[i].create(root);*/
+                circle[i].draw(graphicsContext);
+                rectangle[i].draw(graphicsContext);
+                segment[i].draw(graphicsContext);
+                ellipse[i].draw(graphicsContext);
+                triangle[i].draw(graphicsContext);
                 i++;
             }
     }
@@ -163,6 +167,51 @@ public class Controller extends Canvas {
                     case "DOWN" : point[i].moveDown(step); break;
                     case "LEFT" : point[i].moveLeft(step); break;
                     case "RIGHT" : point[i].moveRight(step); break;
+                    default: break;
+                }
+            }
+            if (type.equals("circle")) {
+                switch (direction) {
+                    case "UP" : circle[i].moveUp(step); break;
+                    case "DOWN" : circle[i].moveDown(step); break;
+                    case "LEFT" : circle[i].moveLeft(step); break;
+                    case "RIGHT" : circle[i].moveRight(step); break;
+                    default: break;
+                }
+            }
+            if (type.equals("rectangle")) {
+                switch (direction) {
+                    case "UP" : rectangle[i].moveUp(step); break;
+                    case "DOWN" : rectangle[i].moveDown(step); break;
+                    case "LEFT" : rectangle[i].moveLeft(step); break;
+                    case "RIGHT" : rectangle[i].moveRight(step); break;
+                    default: break;
+                }
+            }
+            if (type.equals("triangle")) {
+                switch (direction) {
+                    case "UP" : triangle[i].moveUp(step); break;
+                    case "DOWN" : triangle[i].moveDown(step); break;
+                    case "LEFT" : triangle[i].moveLeft(step); break;
+                    case "RIGHT" : triangle[i].moveRight(step); break;
+                    default: break;
+                }
+            }
+            if (type.equals("ellipse")) {
+                switch (direction) {
+                    case "UP" : ellipse[i].moveUp(step); break;
+                    case "DOWN" : ellipse[i].moveDown(step); break;
+                    case "LEFT" : ellipse[i].moveLeft(step); break;
+                    case "RIGHT" : ellipse[i].moveRight(step); break;
+                    default: break;
+                }
+            }
+            if (type.equals("segment")) {
+                switch (direction) {
+                    case "UP" : segment[i].moveUp(step); break;
+                    case "DOWN" : segment[i].moveDown(step); break;
+                    case "LEFT" : segment[i].moveLeft(step); break;
+                    case "RIGHT" : segment[i].moveRight(step); break;
                     default: break;
                 }
             }

@@ -21,7 +21,7 @@ public class tPoint{
     protected double colorR;
     protected double colorG;
     protected double colorB;
-    private Circle circle;
+
 
     private static final int STEP = 5;
 
@@ -91,13 +91,6 @@ public class tPoint{
  * 
  */
     
-    public void create (Group rt) {
-            circle = new Circle(2, Color.color(colorR, colorG, colorB)); // создается точка, с определенным цветом
-            circle.setTranslateX(posX);             // Задается смещение точки относительно левого верхнего угла
-            circle.setTranslateY(posY);             
-            rt.getChildren().add(circle);           // Добавление точки в ноду rt.
-
-    }
 
     public void draw (GraphicsContext gc) {
         gc.setFill(Color.color(colorR, colorG, colorB));
