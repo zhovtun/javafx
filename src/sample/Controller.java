@@ -25,13 +25,8 @@ public class Controller {
     tTriangle[] triangle;
 
     int size;
-    boolean state = false;
     double step = 1;
     String type = "circle";
-
-    public ToggleGroup toggleGroup;
-
-    private HashMap<KeyCode, Boolean> keys = new HashMap<>();
 
     @FXML
     private Slider slider;
@@ -61,36 +56,42 @@ public class Controller {
     GraphicsContext graphicsContext;
 
 
+    // Метод, обрабатываюшйи нажатие кнопок двиения в окне
     @FXML public void down(ActionEvent actionEvent) {
         step = slider.getValue();
         moveArray(type, "DOWN", (int)step);
         drawArray();
     }
 
+    // Метод, обрабатываюшйи нажатие кнопок в окне
     @FXML public void left(ActionEvent actionEvent) {
         step = slider.getValue();
         moveArray(type, "LEFT", (int)step);
         drawArray();
     }
 
+    // Метод, обрабатываюшйи нажатие кнопок в окне
     @FXML public void right(ActionEvent actionEvent) {
         step = slider.getValue();
         moveArray(type, "RIGHT", (int)step);
         drawArray();
     }
 
+    // Метод, обрабатываюшйи нажатие кнопок в окне
     @FXML public void up(ActionEvent actionEvent) {
         step = slider.getValue();
         moveArray(type, "UP", (int)step);
         drawArray();
     }
 
-    public void create(ActionEvent actionEvent) {
+    // Метод, обрабатываюшйи нажатие кнопки "Создать" в окне
+    @FXML public void create(ActionEvent actionEvent) {
         buildArray();
         drawArray();
     }
 
-    public void select(ActionEvent actionEvent) {
+    // Метод, обрабатываюшйи выбор радиокнопок в окне
+    @FXML public void select(ActionEvent actionEvent) {
         if (ringR.isSelected()) {type = "circle";}
         if (pointR.isSelected()) {type = "point";}
         if (rectangleR.isSelected()) {type = "rectangle";}
@@ -100,6 +101,7 @@ public class Controller {
 
     }
 
+    //Метод для создания массива объектов
     public void buildArray () {
         int i=0;
         size = (int) quantity.getValue();
@@ -130,6 +132,7 @@ public class Controller {
         }
     }
 
+    //Метод для отрисовки на Canvas массива объектов
     public void drawArray () {
         int i = 0;
         graphicsContext = canvas.getGraphicsContext2D();
@@ -145,9 +148,9 @@ public class Controller {
             }
     }
 
+    //Метод для определения движения
     public void moveArray (String type, String direction, int step) {
         int i=0;
-        state = false;
 
         while (i<size) {
             if (type.equals("point")) {
@@ -208,8 +211,8 @@ public class Controller {
         }
     }
 
-    public void randMove(ActionEvent actionEvent) {
-        state = true;
+    //Метод, реализующий случайное движение
+    @FXML public void randMove(ActionEvent actionEvent) {
         String[] d = {"UP", "DOWN", "LEFT", "RIGHT"};
         Random rnd = new Random();
         for (int i = 0; i<100; i++) {
@@ -217,6 +220,5 @@ public class Controller {
             moveArray(type, d[rnd.nextInt(d.length)], (int)step);
             drawArray();
         }
-
     }
 }
