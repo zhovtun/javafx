@@ -34,28 +34,28 @@ public class Controller {
     private HashMap<KeyCode, Boolean> keys = new HashMap<>();
 
     @FXML
-    public Slider slider;
+    private Slider slider;
 
     @FXML
-    public Slider quantity;
+    private Slider quantity;
 
     @FXML
-    public RadioButton ringR;
+    private RadioButton ringR;
 
     @FXML
-    public RadioButton ovalR;
+    private RadioButton ovalR;
 
     @FXML
-    public RadioButton rectangleR;
+    private RadioButton rectangleR;
 
     @FXML
-    public RadioButton triangleR;
+    private RadioButton triangleR;
 
     @FXML
-    public RadioButton pointR;
+    private RadioButton pointR;
 
     @FXML
-    public RadioButton segmentR;
+    private RadioButton segmentR;
 
     @FXML public javafx.scene.canvas.Canvas canvas;
     GraphicsContext graphicsContext;
