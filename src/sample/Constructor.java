@@ -2,11 +2,6 @@ package sample;
 
 import javafx.scene.canvas.GraphicsContext;
 
-import java.util.Random;
-
-/**
- * Created by evgen on 22.05.2017.
- */
 public class Constructor {
     private double posX, posY, radiusBig, radiusSmall;
 
