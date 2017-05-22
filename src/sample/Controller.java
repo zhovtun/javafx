@@ -17,13 +17,8 @@ import java.util.Random;
 
 public class Controller {
 
-    tPoint[] point;
-    tCircle[] circle;
-    tRectangle[] rectangle;
-    tSegment[] segment;
-    tEllipse[] ellipse;
-    tTriangle[] triangle;
-
+    Constructor[] shape;
+    
     int size;
     double step = 1;
     String type = "circle";
@@ -106,28 +101,12 @@ public class Controller {
         int i=0;
         size = (int) quantity.getValue();
         Random random = new Random();
-        point = new tPoint[size];
-        circle = new tCircle[size];
-        rectangle = new tRectangle[size];
-        segment = new tSegment[size];
-        ellipse = new tEllipse[size];
-        triangle = new tTriangle[size];
-
+        
+        shape = new Constructor[size];
+        
         while (i<size) {
-            point[i] = new tPoint(random.nextInt(600), random.nextInt(300),
-                    random.nextDouble(), random.nextDouble(), random.nextDouble());
-            circle[i] = new tCircle(random.nextInt(600), random.nextInt(300), random.nextInt(30),
-                    random.nextDouble(), random.nextDouble(), random.nextDouble());
-            rectangle[i] = new tRectangle(random.nextInt(600), random.nextInt(300), random.nextInt(30),
-                    random.nextInt(80), random.nextDouble(), random.nextDouble(), random.nextDouble());
-            segment[i] = new tSegment(random.nextInt(600), random.nextInt(300), random.nextInt(50),
-                    random.nextDouble(), random.nextDouble(), random.nextDouble());
-            ellipse[i] = new tEllipse(random.nextInt(600), random.nextInt(300), random.nextInt(30),
-                    random.nextInt(60), random.nextDouble(), random.nextDouble(), random.nextDouble());
-            triangle[i] = new tTriangle(random.nextInt(600), random.nextInt(300), random.nextInt(600), random.nextInt(300),
-                    random.nextInt(600), random.nextInt(300), random.nextInt(600), random.nextInt(300),
-                    random.nextDouble(), random.nextDouble(), random.nextDouble());
-
+            shape[i] = new Constructor(random.nextInt(600), random.nextInt(360),
+                                        80, 65, Color.BLACK, Color.WHITE);
             i++;
         }
     }
@@ -138,12 +117,7 @@ public class Controller {
         graphicsContext = canvas.getGraphicsContext2D();
             graphicsContext.clearRect(0, 0, 600, 360);
             while (i < size) {
-                point[i].draw(graphicsContext);
-                circle[i].draw(graphicsContext);
-                rectangle[i].draw(graphicsContext);
-                segment[i].draw(graphicsContext);
-                ellipse[i].draw(graphicsContext);
-                triangle[i].draw(graphicsContext);
+                shape[i].draw(graphicsContext);
                 i++;
             }
     }
@@ -153,57 +127,12 @@ public class Controller {
         int i=0;
 
         while (i<size) {
-            if (type.equals("point")) {
-                switch (direction) {
-                    case "UP" : point[i].moveUp(step); break;
-                    case "DOWN" : point[i].moveDown(step); break;
-                    case "LEFT" : point[i].moveLeft(step); break;
-                    case "RIGHT" : point[i].moveRight(step); break;
-                    default: break;
-                }
-            }
             if (type.equals("circle")) {
                 switch (direction) {
-                    case "UP" : circle[i].moveUp(step); break;
-                    case "DOWN" : circle[i].moveDown(step); break;
-                    case "LEFT" : circle[i].moveLeft(step); break;
-                    case "RIGHT" : circle[i].moveRight(step); break;
-                    default: break;
-                }
-            }
-            if (type.equals("rectangle")) {
-                switch (direction) {
-                    case "UP" : rectangle[i].moveUp(step); break;
-                    case "DOWN" : rectangle[i].moveDown(step); break;
-                    case "LEFT" : rectangle[i].moveLeft(step); break;
-                    case "RIGHT" : rectangle[i].moveRight(step); break;
-                    default: break;
-                }
-            }
-            if (type.equals("triangle")) {
-                switch (direction) {
-                    case "UP" : triangle[i].moveUp(step); break;
-                    case "DOWN" : triangle[i].moveDown(step); break;
-                    case "LEFT" : triangle[i].moveLeft(step); break;
-                    case "RIGHT" : triangle[i].moveRight(step); break;
-                    default: break;
-                }
-            }
-            if (type.equals("ellipse")) {
-                switch (direction) {
-                    case "UP" : ellipse[i].moveUp(step); break;
-                    case "DOWN" : ellipse[i].moveDown(step); break;
-                    case "LEFT" : ellipse[i].moveLeft(step); break;
-                    case "RIGHT" : ellipse[i].moveRight(step); break;
-                    default: break;
-                }
-            }
-            if (type.equals("segment")) {
-                switch (direction) {
-                    case "UP" : segment[i].moveUp(step); break;
-                    case "DOWN" : segment[i].moveDown(step); break;
-                    case "LEFT" : segment[i].moveLeft(step); break;
-                    case "RIGHT" : segment[i].moveRight(step); break;
+                    case "UP" : shape[i].moveUp(step); break;
+                    case "DOWN" : shape[i].moveDown(step); break;
+                    case "LEFT" : shape[i].moveLeft(step); break;
+                    case "RIGHT" : shape[i].moveRight(step); break;
                     default: break;
                 }
             }

@@ -3,9 +3,7 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-/**
- * Created by evgen on 22.05.2017.
- */
+
 public class Circle extends Shape {
     private double posX;
     private double posY;
