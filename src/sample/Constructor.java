@@ -17,6 +17,9 @@ public class Constructor {
     private Rectangle rectangleStroke;
     double div = 6;
 
+    // **** Конструктор класса, в котором создается заданная фигура.  Фигура представляет собой 2 окружности и 2 прямоугольника,
+    // **** один залитый белым цветом и без контура, второй прозрачнй и с контуром черного цвета.
+
     public Constructor(double posX, double posY, double radiusBig, double radiusSmall, Color colorStroke, Color colorFill) {
         this.posX = posX;
         this.posY = posY;
@@ -24,9 +27,9 @@ public class Constructor {
         this.radiusSmall = radiusSmall;
         this.colorStroke = colorStroke;
         this.colorFill = colorFill;
-        bigCircle = new Circle(posX, posY, radiusBig);
-        smallCircle = new Circle(posX+(radiusBig-radiusSmall)/2, posY+(radiusBig-radiusSmall)/2, radiusSmall);
-        rectangle = new Rectangle(
+        bigCircle = new Circle(posX, posY, radiusBig);  // **** Внешняя окружность. ****
+        smallCircle = new Circle(posX+(radiusBig-radiusSmall)/2, posY+(radiusBig-radiusSmall)/2, radiusSmall); // **** Внутренняя окружность. ****
+        rectangle = new Rectangle(  // **** Прямоугльник, залитый белым цветом. Точки полигона определяются по формуле x = x + r*cos(a), y = y + sin(a). ****
                 posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(30+30/div)),
                 posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(60-30/div)),
                 posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(210+30/div)),
@@ -37,7 +40,7 @@ public class Constructor {
                 posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(240-30/div)),
                 true, colorFill
         );
-        rectangleStroke = new Rectangle(
+        rectangleStroke = new Rectangle(    // **** Прямоугльник, прозрачный с черным контуром ****
                 posX + radiusBig/2 + radiusSmall/2*cos(Math.toRadians(30)),
                 posX + radiusBig/2 + radiusSmall/2*cos(Math.toRadians(60)),
                 posX + radiusBig/2 + radiusSmall/2*cos(Math.toRadians(210)),
@@ -51,6 +54,7 @@ public class Constructor {
     }
 
 
+    // **** Метод для рисования созданной фигуры
 
     public void draw (GraphicsContext gc) {
         bigCircle.draw(gc);

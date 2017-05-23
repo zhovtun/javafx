@@ -4,6 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Rectangle extends Shape {
+    // **** Для создания линий, используется полигон. Конструктор метода Polygon принимает на вход 2 массива xArray и yArray,
+    // **** которые содержат xy координаты точек полигона.
     private double point1x, point2x, point3x, point4x;
     private double point1y, point2y, point3y, point4y;
     private double[] xArray;
@@ -25,7 +27,7 @@ public class Rectangle extends Shape {
         xArray = new double[] {point1x, point2x, point3x, point4x};
         yArray = new double[] {point1y, point2y, point3y, point4y};
     }
-
+    // **** Метод рисования объекта
     @Override
     public void draw(GraphicsContext gc) {
         xArray[0] = point1x;
@@ -46,7 +48,7 @@ public class Rectangle extends Shape {
             gc.strokePolygon(xArray, yArray, 4);
         }
     }
-
+    // **** Методы движения объекта
     @Override
     public void moveUp(int step) {
         point1y -= step;
