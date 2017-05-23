@@ -32,16 +32,16 @@
             <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#create" prefHeight="59.0" prefWidth="67.0" text="Создать" />
             <Slider fx:id="slider" blockIncrement="1.0" layoutX="334.0" layoutY="107.0" max="20.0" min="1.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" value="1.0" />
             <Label layoutX="436.0" layoutY="119.0" text="Скорость" />
-            <RadioButton fx:id="ringR" layoutX="112.0" layoutY="9.0" mnemonicParsing="false" onAction="#select" selected="true" text="Круг">
-               <toggleGroup>
-                  <ToggleGroup fx:id="shape" />
-               </toggleGroup>
+            <RadioButton fx:id="ringR" layoutX="112.0" layoutY="9.0" mnemonicParsing="false" onAction="#select" selected="true" text="Знак">
+                <toggleGroup>
+                    <ToggleGroup fx:id="shape" />
+                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="ovalR" layoutX="112.0" layoutY="28.0" mnemonicParsing="false" onAction="#select" text="Овал" toggleGroup="$shape" />
-            <RadioButton fx:id="rectangleR" layoutX="112.0" layoutY="46.0" mnemonicParsing="false" onAction="#select" text="Прямоугольник" toggleGroup="$shape" />
-            <RadioButton fx:id="triangleR" layoutX="231.0" layoutY="9.0" mnemonicParsing="false" onAction="#select" text="Треугольник" toggleGroup="$shape" />
-            <RadioButton fx:id="pointR" layoutX="231.0" layoutY="28.0" mnemonicParsing="false" onAction="#select" text="Точка" toggleGroup="$shape" />
-            <RadioButton fx:id="segmentR" layoutX="231.0" layoutY="47.0" mnemonicParsing="false" onAction="#select" text="Линия" toggleGroup="$shape" />
+             <RadioButton fx:id="ovalR" layoutX="112.0" layoutY="28.0" mnemonicParsing="false" onAction="#select" text="Овал" toggleGroup="$shape" />
+             <RadioButton fx:id="rectangleR" layoutX="112.0" layoutY="46.0" mnemonicParsing="false" onAction="#select" text="Прямоугольник" toggleGroup="$shape" />
+             <RadioButton fx:id="triangleR" layoutX="231.0" layoutY="9.0" mnemonicParsing="false" onAction="#select" text="Треугольник" toggleGroup="$shape" />
+             <RadioButton fx:id="pointR" layoutX="231.0" layoutY="28.0" mnemonicParsing="false" onAction="#select" text="Точка" toggleGroup="$shape" />
+             <RadioButton fx:id="segmentR" layoutX="231.0" layoutY="47.0" mnemonicParsing="false" onAction="#select" text="Линия" toggleGroup="$shape" />
             <Slider fx:id="quantity" layoutX="33.0" layoutY="107.0" min="1.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" />
             <Label layoutX="129.0" layoutY="84.0" text="Количество" />
             <Button layoutX="423.0" layoutY="43.0" mnemonicParsing="false" onAction="#randMove" prefHeight="25.0" prefWidth="75.0" text="Случайно" />

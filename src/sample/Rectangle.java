@@ -28,6 +28,15 @@ public class Rectangle extends Shape {
 
     @Override
     public void draw(GraphicsContext gc) {
+        xArray[0] = point1x;
+        xArray[1] = point2x;
+        xArray[2] = point3x;
+        xArray[3] = point4x;
+        yArray[0] = point1y;
+        yArray[1] = point2y;
+        yArray[2] = point3y;
+        yArray[3] = point4y;
+        
         if (type) {
             gc.setFill(color);
             gc.fillPolygon(xArray, yArray, 4);
