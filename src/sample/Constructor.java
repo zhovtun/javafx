@@ -15,6 +15,7 @@ public class Constructor {
     private Circle smallCircle;
     private Rectangle rectangle;
     private Rectangle rectangleStroke;
+    double div = 6;
 
     public Constructor(double posX, double posY, double radiusBig, double radiusSmall, Color colorStroke, Color colorFill) {
         this.posX = posX;
@@ -26,14 +27,14 @@ public class Constructor {
         bigCircle = new Circle(posX, posY, radiusBig);
         smallCircle = new Circle(posX+(radiusBig-radiusSmall)/2, posY+(radiusBig-radiusSmall)/2, radiusSmall);
         rectangle = new Rectangle(
-                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(30+30/4)),
-                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(60-30/4)),
-                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(210+30/4)),
-                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(240-30/4)),
-                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(30+30/4)),
-                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(60-30/4)),
-                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(210+30/4)),
-                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(240-30/4)),
+                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(30+30/div)),
+                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(60-30/div)),
+                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(210+30/div)),
+                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(240-30/div)),
+                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(30+30/div)),
+                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(60-30/div)),
+                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(210+30/div)),
+                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(240-30/div)),
                 true, colorFill
         );
         rectangleStroke = new Rectangle(

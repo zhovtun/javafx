@@ -27,12 +27,15 @@ public class Controller {
     private Slider slider;
 
     @FXML
+    private Slider radius;
+
+    @FXML
     private Slider quantity;
 
     @FXML
     private RadioButton ringR;
 
-    @FXML
+   /* @FXML
     private RadioButton ovalR;
 
     @FXML
@@ -45,7 +48,7 @@ public class Controller {
     private RadioButton pointR;
 
     @FXML
-    private RadioButton segmentR;
+    private RadioButton segmentR;*/
 
     @FXML public javafx.scene.canvas.Canvas canvas;
     GraphicsContext graphicsContext;
@@ -88,11 +91,11 @@ public class Controller {
     // Метод, обрабатываюшйи выбор радиокнопок в окне
     @FXML public void select(ActionEvent actionEvent) {
         if (ringR.isSelected()) {type = "circle";}
-        if (pointR.isSelected()) {type = "point";}
+        /*if (pointR.isSelected()) {type = "point";}
         if (rectangleR.isSelected()) {type = "rectangle";}
         if (ovalR.isSelected()) {type = "ellipse";}
         if (triangleR.isSelected()) {type = "triangle";}
-        if (segmentR.isSelected()) {type = "segment";}
+        if (segmentR.isSelected()) {type = "segment";}*/
 
     }
 
@@ -105,8 +108,8 @@ public class Controller {
         shape = new Constructor[size];
         
         while (i<size) {
-            shape[i] = new Constructor(random.nextInt(600), random.nextInt(360),
-                                        80, 55, Color.BLACK, Color.WHITE);
+            shape[i] = new Constructor(random.nextInt(600), random.nextInt(360 - (int)radius.getValue()),
+                                        radius.getValue(), radius.getValue()*0.6785, Color.BLACK, Color.WHITE);
             i++;
         }
     }
