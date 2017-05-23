@@ -3,6 +3,9 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import static java.lang.StrictMath.cos;
+import static java.lang.StrictMath.sin;
+
 public class Constructor {
     private double posX, posY, radiusBig, radiusSmall;
     boolean type;
@@ -21,27 +24,27 @@ public class Constructor {
         this.colorStroke = colorStroke;
         this.colorFill = colorFill;
         bigCircle = new Circle(posX, posY, radiusBig);
-        smallCircle = new Circle(posX, posY, radiusSmall);
+        smallCircle = new Circle(posX+(radiusBig-radiusSmall)/2, posY+(radiusBig-radiusSmall)/2, radiusSmall);
         rectangle = new Rectangle(
-                posX + radiusBig - radiusSmall,
-                posX + (radiusBig - radiusSmall)* 2,
-                posX + radiusBig,
-                posX + radiusBig + (radiusBig - radiusSmall),
-                posY + radiusBig - radiusSmall,
-                posY + (radiusBig - radiusSmall)* 2,
-                posY + radiusBig,
-                posY + radiusBig + (radiusBig - radiusSmall),
+                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(30+30/4)),
+                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(60-30/4)),
+                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(210+30/4)),
+                posX + radiusBig/2 + radiusBig/2*cos(Math.toRadians(240-30/4)),
+                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(30+30/4)),
+                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(60-30/4)),
+                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(210+30/4)),
+                posY + radiusBig/2 + radiusBig/2*sin(Math.toRadians(240-30/4)),
                 true, colorFill
         );
         rectangleStroke = new Rectangle(
-                posX + radiusBig - radiusSmall -1,
-                posX + (radiusBig - radiusSmall)* 2 -1,
-                posX + radiusBig,
-                posX + radiusBig + (radiusBig - radiusSmall) -1,
-                posY + radiusBig - radiusSmall -1,
-                posY + (radiusBig - radiusSmall)* 2 -1,
-                posY + radiusBig -1,
-                posY + radiusBig + (radiusBig - radiusSmall) -1,
+                posX + radiusBig/2 + radiusSmall/2*cos(Math.toRadians(30)),
+                posX + radiusBig/2 + radiusSmall/2*cos(Math.toRadians(60)),
+                posX + radiusBig/2 + radiusSmall/2*cos(Math.toRadians(210)),
+                posX + radiusBig/2 + radiusSmall/2*cos(Math.toRadians(240)),
+                posY + radiusBig/2 + radiusSmall/2*sin(Math.toRadians(30)),
+                posY + radiusBig/2 + radiusSmall/2*sin(Math.toRadians(60)),
+                posY + radiusBig/2 + radiusSmall/2*sin(Math.toRadians(210)),
+                posY + radiusBig/2 + radiusSmall/2*sin(Math.toRadians(240)),
                 false, colorStroke
         );
     }

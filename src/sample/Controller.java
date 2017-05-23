@@ -106,7 +106,7 @@ public class Controller {
         
         while (i<size) {
             shape[i] = new Constructor(random.nextInt(600), random.nextInt(360),
-                                        80, 65, Color.BLACK, Color.WHITE);
+                                        80, 55, Color.BLACK, Color.WHITE);
             i++;
         }
     }
